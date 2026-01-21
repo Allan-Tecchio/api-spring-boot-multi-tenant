@@ -1,4 +1,4 @@
-package br.com.allantecchio.apispringboottenant.tenant;
+package br.com.allantecchio.tenant;
 
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
 import org.springframework.stereotype.Component;

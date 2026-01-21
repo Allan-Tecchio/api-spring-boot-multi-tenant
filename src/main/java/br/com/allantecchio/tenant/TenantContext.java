@@ -1,4 +1,4 @@
-package br.com.allantecchio.apispringboottenant.tenant;
+package br.com.allantecchio.tenant;
 
 public class TenantContext {
 

@@ -1,7 +1,7 @@
-package br.com.allantecchio.apispringboottenant.api;
+package br.com.allantecchio.api;
 
-import br.com.allantecchio.apispringboottenant.dto.NotaFiscalXmlDTO;
-import br.com.allantecchio.apispringboottenant.service.NotaFiscalXmlService;
+import br.com.allantecchio.dto.NotaFiscalXmlDTO;
+import br.com.allantecchio.service.NotaFiscalXmlService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;

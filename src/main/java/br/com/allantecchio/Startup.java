@@ -1,13 +1,13 @@
-package br.com.allantecchio.apispringboottenant;
+package br.com.allantecchio;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class ApiSpringBootTenantApplication {
+public class Startup {
 
     public static void main(String[] args) {
-        SpringApplication.run(ApiSpringBootTenantApplication.class, args);
+        SpringApplication.run(Startup.class, args);
     }
 
 }

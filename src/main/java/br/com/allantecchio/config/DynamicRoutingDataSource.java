@@ -1,8 +1,8 @@
-package br.com.allantecchio.apispringboottenant.config;
+package br.com.allantecchio.config;
 
-import br.com.allantecchio.apispringboottenant.tenant.TenantContext;
-import br.com.allantecchio.apispringboottenant.tenant.TenantDataSourceCache;
-import br.com.allantecchio.apispringboottenant.tenant.TenantDb;
+import br.com.allantecchio.tenant.TenantContext;
+import br.com.allantecchio.tenant.TenantDataSourceCache;
+import br.com.allantecchio.tenant.TenantDb;
 import org.springframework.jdbc.datasource.lookup.AbstractRoutingDataSource;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
 

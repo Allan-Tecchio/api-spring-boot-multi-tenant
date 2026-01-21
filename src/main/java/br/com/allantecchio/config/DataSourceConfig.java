@@ -1,6 +1,6 @@
-package br.com.allantecchio.apispringboottenant.config;
+package br.com.allantecchio.config;
 
-import br.com.allantecchio.apispringboottenant.tenant.TenantDataSourceCache;
+import br.com.allantecchio.tenant.TenantDataSourceCache;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 

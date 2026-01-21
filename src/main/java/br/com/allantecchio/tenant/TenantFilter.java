@@ -1,4 +1,4 @@
-package br.com.allantecchio.apispringboottenant.tenant;
+package br.com.allantecchio.tenant;
 
 import jakarta.servlet.*;
 import jakarta.servlet.http.HttpServletRequest;

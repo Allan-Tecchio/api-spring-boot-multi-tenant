@@ -1,4 +1,4 @@
-package br.com.allantecchio.apispringboottenant.dto;
+package br.com.allantecchio.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

@@ -1,6 +1,6 @@
-package br.com.allantecchio.apispringboottenant.service;
+package br.com.allantecchio.service;
 
-import br.com.allantecchio.apispringboottenant.dto.NotaFiscalXmlDTO;
+import br.com.allantecchio.dto.NotaFiscalXmlDTO;
 import lombok.RequiredArgsConstructor;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
