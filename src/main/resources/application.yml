@@ -1,4 +1,9 @@
 spring:
+  datasource:
+    jdbc-url: jdbc:postgresql://localhost:5432/api
+    username: postgres
+    password: postgres
+
   jpa:
     hibernate:
       ddl-auto: none
@@ -8,8 +13,5 @@ spring:
         format_sql: false
         show_sql: false
 
-  rabbitmq:
-    host: localhost
-    port: 5672
-    username: admin
-    password: admin
+security:
+  crypto-secret: s2d21qera41#1q2f31!#%1345512

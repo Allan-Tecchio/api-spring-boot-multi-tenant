@@ -1,4 +1,4 @@
-package br.com.allantecchio.service;
+package br.com.allantecchio.repository;
 
 import br.com.allantecchio.dto.NotaFiscalXmlDTO;
 import lombok.RequiredArgsConstructor;
@@ -11,7 +11,7 @@ import java.util.Map;
 
 @Repository
 @RequiredArgsConstructor
-public class NotaFiscalXmlService {
+public class NotaFiscalXmlRepository {
 
     private final NamedParameterJdbcTemplate jdbc;
     private final String eventos = "100,101,102,110,135,205";

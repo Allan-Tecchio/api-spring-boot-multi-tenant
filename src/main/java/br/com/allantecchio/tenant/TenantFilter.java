@@ -1,13 +1,20 @@
 package br.com.allantecchio.tenant;
 
+import br.com.allantecchio.security.CryptoService;
 import jakarta.servlet.*;
 import jakarta.servlet.http.HttpServletRequest;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
+import br.com.allantecchio.tenant.TenantRepository;
 
 import java.io.IOException;
 
 @Component
+@RequiredArgsConstructor
 public class TenantFilter implements Filter {
+
+    private final TenantRepository repo;
+    private final CryptoService crypto;
 
     @Override
     public void doFilter(
@@ -18,15 +25,20 @@ public class TenantFilter implements Filter {
 
         HttpServletRequest req = (HttpServletRequest) request;
 
-        String url  = req.getHeader("X-Tenant-Db-Url");
-        String user = req.getHeader("X-Tenant-Db-User");
-        String pass = req.getHeader("X-Tenant-Db-Pass");
-
-        if (url == null || user == null || pass == null) {
-            throw new RuntimeException("Headers de banco não informados");
+        String tenantId = req.getHeader("X-Tenant-Id");
+        if (tenantId == null) {
+            throw new RuntimeException("Tenant não informado");
         }
 
-        TenantContext.set(new TenantDb(url, user, pass));
+        TenantDb db = repo.findByTenantId(tenantId);
+
+        String decryptedPass = crypto.decrypt(db.getPass());
+
+        TenantContext.set(new TenantDb(
+                db.getUrl(),
+                db.getUser(),
+                decryptedPass
+        ));
 
         try {
             chain.doFilter(request, response);

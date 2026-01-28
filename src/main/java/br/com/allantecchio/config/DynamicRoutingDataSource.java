@@ -7,8 +7,7 @@ import org.springframework.jdbc.datasource.lookup.AbstractRoutingDataSource;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
 
 import javax.sql.DataSource;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.Collections;
 
 public class DynamicRoutingDataSource extends AbstractRoutingDataSource {
 
@@ -17,32 +16,31 @@ public class DynamicRoutingDataSource extends AbstractRoutingDataSource {
     public DynamicRoutingDataSource(TenantDataSourceCache cache) {
         this.cache = cache;
 
-        // ⚠️ Datasource "fake" só pra satisfazer o Spring no boot
-        DriverManagerDataSource dummy = new DriverManagerDataSource();
-        dummy.setDriverClassName("org.postgresql.Driver");
-        dummy.setUrl("jdbc:postgresql://localhost:5432/postgres");
-        dummy.setUsername("postgres");
-        dummy.setPassword("postgres");
+        // Default fake só para satisfazer o AbstractRoutingDataSource
+        DriverManagerDataSource fake = new DriverManagerDataSource();
+        fake.setDriverClassName("org.postgresql.Driver");
+        fake.setUrl("jdbc:postgresql://localhost:5432/DO_NOT_USE");
+        fake.setUsername("invalid");
+        fake.setPassword("invalid");
 
-        Map<Object, Object> targets = new HashMap<>();
-        targets.put("DUMMY", dummy);
-
-        super.setTargetDataSources(targets);
-        super.setDefaultTargetDataSource(dummy);
+        super.setTargetDataSources(Collections.emptyMap());
+        super.setDefaultTargetDataSource(fake);
         super.afterPropertiesSet();
     }
 
     @Override
     protected Object determineCurrentLookupKey() {
-        return "DYNAMIC";
+        return null;
     }
 
     @Override
     protected DataSource determineTargetDataSource() {
         TenantDb db = TenantContext.get();
+
         if (db == null) {
-            return (DataSource) getResolvedDefaultDataSource();
+            throw new IllegalStateException("TenantContext não definido para a request");
         }
+
         return cache.getOrCreate(db);
     }
 }
