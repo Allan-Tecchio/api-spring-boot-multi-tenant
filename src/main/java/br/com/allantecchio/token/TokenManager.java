@@ -27,7 +27,7 @@ public class TokenManager {
 
     // example String t1 = tokenManager.getToken("API_TI", Duration.ofHours(24));
     private String callApi(String apiKey) {
-        // @Allan 27/01/2026 - chamada HTTP para renovação de token
+        // @Allan 27/01/2026 - call HTTP for renew token
         return "TOKEN_" + apiKey + "_" + System.currentTimeMillis();
     }
 
